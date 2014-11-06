@@ -1,0 +1,17 @@
+{
+  "version": 3,
+  "sources": [
+    "../grunt-dry/node_modules/grunt-browserify/node_modules/browserify/node_modules/browser-pack/_prelude.js",
+    "index.js",
+    "lib/validate-options.js"
+  ],
+  "names": [],
+  "mappings": "AAAA;ACAA;AACA;;ACDA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA",
+  "file": "generated.js",
+  "sourceRoot": "",
+  "sourcesContent": [
+    "(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require==\"function\"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error(\"Cannot find module '\"+o+\"'\");throw f.code=\"MODULE_NOT_FOUND\",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require==\"function\"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})",
+    "module.exports = require('./lib/validate-options');\n",
+    "//\n// Simple module to validate the presence of required options.\n//\n\nvar _ = require('underscore');\nvar errorClass = Error;\n\n//\n// Check if the specified option is valid.\n//\nfunction isValid(options, key) {\n    var value = _.isFunction(options) ? options(key) : options[key];\n\n    if (typeof value === 'undefined') {\n        return false;\n    }\n\n    if (value === null) {\n        return false;\n    }\n\n    if (value === '') {\n        return false;\n    }\n\n    if (_.isNaN(value)) {\n        return false;\n    }\n\n    return true;\n}\n\n//\n// hasAll(options, 'key1', 'key2', ...);\n//\n// Ensures that all the specified keys exist and are nonempty strings.\nmodule.exports.hasAll = function hasAll() {\n    var missing = [];\n    var options = arguments[0];\n    for (var i = 1; i < arguments.length; ++i) {\n        var key = arguments[i];\n        if (! isValid(options, key)) {\n            missing.push(key);\n        }\n    }\n\n    if (missing.length) {\n        var err = 'Missing required option' +\n                (missing.length > 1 ? 's' : '') +\n                ': ' + missing.join(', ');\n        throw new errorClass(err);\n    }\n\n    return true;\n};\n\n//\n// hasOne(options, 'key1', 'key2', ...);\n//\n// Ensures that at least one of the specified keys exist and are\n// nonempty strings.\n//\nmodule.exports.hasOne = function hasOne() {\n    var options = arguments[0];\n    for (var i = 1; i < arguments.length; ++i) {\n        var key = arguments[i];\n        if (isValid(options, key)) {\n            return true; // found one\n        }\n    }\n\n    var opts = Array.prototype.slice.call(arguments, 1);\n    throw new errorClass('Missing at least one required option from' +\n                    ': ' + opts.join(', '));\n};\n\n//\n// setErrorClass(errorClass)\n//\n// Override the class used for validation errors\n//\nmodule.exports.setErrorClass = function(c) {\n    errorClass = c;\n};\n"
+  ]
+}
