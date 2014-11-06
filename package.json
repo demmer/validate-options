@@ -1,0 +1,30 @@
+{
+  "name": "validate-options",
+  "version": "0.1.0",
+  "description": "Simple option validation library",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jut-io/validate-options.git"
+  },
+  "keywords": [
+    "validation",
+    "options"
+  ],
+  "author": "Michael Demmer <demmer@jut.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jut-io/validate-options/issues"
+  },
+  "homepage": "https://github.com/jut-io/validate-options",
+  "dependencies": {
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "grunt": "^0.4.5"
+  }
+}
