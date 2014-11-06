@@ -1,4 +1,4 @@
-var validateOpts = require('./validate-options');
+var validateOpts = require('../lib/validate-options');
 var expect = require('chai').expect;
 
 describe("validate options", function() {
