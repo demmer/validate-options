@@ -1,6 +1,6 @@
 {
   "name": "validate-options",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple option validation library",
   "main": "index.js",
   "scripts": {
