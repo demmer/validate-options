@@ -1,4 +1,4 @@
-validate-options
+validate-options [![Build Status: Linux](https://travis-ci.org/jut-io/validate-options.png?branch=master)](https://travis-ci.org/jut-io/validate-options)
 ================
 
 Simple module for checking that a set of required options exist and are
